@@ -1,12 +1,18 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.0'
 
 gem 'mysql2'
-gem 'haml'
+gem 'devise'
+gem 'haml-rails'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'twitter-bootstrap-rails'
 
 group :development do
-
+  gem "nifty-generators"
+  #gem 'unicorn'
 end
 
 group :assets do
@@ -16,3 +22,4 @@ group :assets do
 end
 
 gem 'jquery-rails'
+

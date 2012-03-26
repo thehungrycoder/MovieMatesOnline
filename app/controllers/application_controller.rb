@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  layout 'default'
+
+  def current_user
+
+  end
 end
