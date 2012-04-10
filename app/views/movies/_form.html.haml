@@ -1,0 +1,56 @@
+= form_for @movie, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :_type, :class => 'control-label'
+    .controls
+      = f.text_field :_type, :class => 'text_field'
+  .control-group
+    = f.label :_id, :class => 'control-label'
+    .controls
+      = f.text_field :_id, :class => 'text_field'
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'text_field'
+  .control-group
+    = f.label :alternate_names, :class => 'control-label'
+    .controls
+      = f.text_field :alternate_names, :class => 'text_field'
+  .control-group
+    = f.label :imdbid, :class => 'control-label'
+    .controls
+      = f.text_field :imdbid, :class => 'text_field'
+  .control-group
+    = f.label :released, :class => 'control-label'
+    .controls
+      = f.text_field :released, :class => 'control-label'
+  .control-group
+    = f.label :tagline, :class => 'control-label'
+    .controls
+      = f.text_field :tagline, :class => 'text_field'
+  .control-group
+    = f.label :overview, :class => 'control-label'
+    .controls
+      = f.text_field :overview, :class => 'text_field'
+  .control-group
+    = f.label :imdb_rating, :class => 'control-label'
+    .controls
+      = f.text_field :imdb_rating, :class => 'text_field'
+  .control-group
+    = f.label :certificate, :class => 'control-label'
+    .controls
+      = f.text_field :certificate, :class => 'text_field'
+  .control-group
+    = f.label :runtime, :class => 'control-label'
+    .controls
+      = f.text_field :runtime, :class => 'text_field'
+  .control-group
+    = f.label :cover_image, :class => 'control-label'
+    .controls
+      = f.text_field :cover_image, :class => 'text_field'
+  .control-group
+    = f.label :display, :class => 'control-label'
+    .controls
+      = f.text_field :display, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), movies_path, :class => 'btn'
