@@ -1,29 +1,13 @@
-%h1 Latest Movies
-%table.table.table-striped
-  %thead
-    %tr
-      %th= t(:name)
-      %th= t(:certificate)
-      %th= t(:cover_image)
-      %th=t '.actions', :default => t("helpers.actions")
-  %tbody
-    - @movies.each do |movie|
-      %tr
-        %td
-          %div{:style => 'float: left; padding-right: 5px'}
-            - if movie.cover_image.present?
-              = link_to(image_tag("/system/movie_cover_images/#{movie.cover_image}", {:width => 80, :height => 100}), movie_path(movie.id))
-          = movie.name
-          %br
-          - if movie.released.present?
-            = "Released: #{movie.released}"
-          - if movie.certificate.present?
-            = "Certificate: #{movie.certificate}"
+= render 'search'
+.span9
+  %h1 Latest Movies
+  = pagination_links(@movies)
 
-        %td= movie.certificate
-        %td= movie.cover_image
-        %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_movie_path(movie), :class => 'btn btn-mini'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), movie_path(movie), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'
-= will_paginate(@movies, {:class => 'pagination pagination-centered', :inner_window => 2, :link_separator => 'li'})
-/= link_to t('.new', :default => t("helpers.links.new")), new_movie_path, :class => 'btn btn-primary'
+  #movies
+    - @movies.each do |movie|
+      = render 'movies/movie', :movie => movie
+    #moviedetail
+
+  .clearfix
+  = pagination_links(@movies)
+  /= link_to t('.new', :default => t("helpers.links.new")), new_movie_path, :class => 'btn btn-primary'

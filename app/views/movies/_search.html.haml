@@ -1,0 +1,5 @@
+.span3
+  = form_for(:moviesearch, :url => latest_movies_path, :method => 'get', :html_options => { :class => 'well'}) do |f|
+    = f.label :name
+    = f.text_field :name, :class => 'span3', :placeholder => 'Enter movie name...'
+    = f.submit 'Search', :class => 'btn'

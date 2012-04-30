@@ -1,52 +1,31 @@
-- model_class = @movie.class
-%h1=t '.title', :default => model_class.model_name.human
+=javascript_include_tag('jquery.youTube')
+%h1.title= @movie.name
 
-%p
-  %strong= model_class.human_attribute_name(:name) + ':'
-  %br
-  = @movie.name
-%p
-  %strong= model_class.human_attribute_name(:alternate_names) + ':'
-  %br
-  = @movie.alternate_names
-%p
-  %strong= model_class.human_attribute_name(:imdbid) + ':'
-  %br
-  = @movie.imdbid
-%p
-  %strong= model_class.human_attribute_name(:released) + ':'
-  %br
-  = @movie.released
-%p
-  %strong= model_class.human_attribute_name(:tagline) + ':'
-  %br
-  = @movie.tagline
-%p
-  %strong= model_class.human_attribute_name(:overview) + ':'
-  %br
-  = @movie.overview
-%p
-  %strong= model_class.human_attribute_name(:imdb_rating) + ':'
-  %br
-  = @movie.imdb_rating
-%p
-  %strong= model_class.human_attribute_name(:certificate) + ':'
-  %br
-  = @movie.certificate
-%p
-  %strong= model_class.human_attribute_name(:runtime) + ':'
-  %br
-  = @movie.runtime
-%p
-  %strong= model_class.human_attribute_name(:cover_image) + ':'
-  %br
-  = @movie.cover_image
-%p
-  %strong= model_class.human_attribute_name(:display) + ':'
-  %br
-  = @movie.display
+.row
+  .span2
+    - if @movie.cover_image.present?
+      = image_tag("/system/movie_cover_images/#{@movie.cover_image}", {:width => 80, :height => 100})
+    - else
+      = image_tag("film.png", {:width => 80, :height => 100})
+  .span3
 
-.form-actions
-  = link_to t('.back', :default => t("helpers.links.back")), movies_path, :class => 'btn'
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_movie_path(@movie), :class => 'btn'
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), movie_path(@movie), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'
+    - if @movie.released.present?
+      %strong Released
+      = @movie.released
+      %br
+    - if @movie.certificate.present?
+      %strong Certificate
+      = @movie.certificate
+      %br
+
+  .span7
+    #movie_trailer{style: 'height:350px; width:520px;'}
+- if @movie.overview.present?
+  .row
+    .span12
+      = @movie.overview
+
+/.form-actions
+/  = link_to t('.back', :default => t("helpers.links.back")), movies_path, :class => 'btn'
+/  = link_to t('.edit', :default => t("helpers.links.edit")), edit_movie_path(@movie), :class => 'btn'
+/  = link_to t('.destroy', :default => t("helpers.links.destroy")), movie_path(@movie), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'

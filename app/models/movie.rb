@@ -16,4 +16,13 @@ class Movie
   field :updated_at, :type => Date
 
   default_scope where(:display => 1)
+
+  #sunspot
+  include Sunspot::Mongo
+
+  searchable do
+    text :name
+    time :created_at
+  end
+
 end
