@@ -9,6 +9,7 @@ gem 'twitter-bootstrap-rails'
 gem 'will_paginate_mongoid'
 gem 'sunspot_mongo', :git => 'https://github.com/derekharmel/sunspot_mongo.git'
 gem 'sunspot_solr'
+
 group :development do
   gem 'rails-footnotes', '>= 3.7.5.rc4'
 end
@@ -23,7 +24,7 @@ group :assets do
   gem 'jquery-ui-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer'
+  gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end

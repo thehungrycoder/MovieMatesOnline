@@ -9,11 +9,11 @@ module ApplicationHelper
 
   def get_movie_poster_path(poster)
     if poster.present?
-      path =  Rails.root.join('system','movie_cover_image',poster)
-      raise path.inspect
-      raise File.exists?(path).inspect
-      return path if File.exists?(path)
+      path =  Rails.root.join('public','system','movie_cover_images',poster)
+      if File.exists?(path)
+        return "/system/movie_cover_images/#{poster}"
+      end
     end
-    nil
+    'film.png'
   end
 end
