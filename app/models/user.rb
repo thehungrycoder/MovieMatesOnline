@@ -1,27 +1,27 @@
 class User
   include Mongoid::Document
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and
+  devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:username]
 
   ## Database authenticatable
-  field :email,              :type => String, :null => false, :default => ""
+  field :email, :type => String, :null => false, :default => ""
   field :encrypted_password, :type => String, :null => false, :default => ""
 
   ## Recoverable
-  field :reset_password_token,   :type => String
+  field :reset_password_token, :type => String
   field :reset_password_sent_at, :type => Time
 
   ## Rememberable
   field :remember_created_at, :type => Time
 
   ## Trackable
-  field :sign_in_count,      :type => Integer, :default => 0
+  field :sign_in_count, :type => Integer, :default => 0
   field :current_sign_in_at, :type => Time
-  field :last_sign_in_at,    :type => Time
+  field :last_sign_in_at, :type => Time
   field :current_sign_in_ip, :type => String
-  field :last_sign_in_ip,    :type => String
+  field :last_sign_in_ip, :type => String
 
   ## Encryptable
   # field :password_salt, :type => String
@@ -43,8 +43,13 @@ class User
   field :username, :type => String, :required => true
   field :name, :type => String
 
-  def self.find_for_database_authentication(conditions)
-    username = conditions.delete(:username)
-    self.any_of({ :username =>  /^#{Regexp.escape(username)}$/i }, { :username =>  /^#{Regexp.escape(username)}$/i }).first
+  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
+    data = access_token.extra.raw_info
+    if user = self.where(email: data.email).first
+      user
+    else # Create a user with a stub password.
+      self.create!(:email => data.email, :password => Devise.friendly_token[0, 20])
+    end
   end
+
 end

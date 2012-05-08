@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
 gem 'mongoid', '~> 2.4'
@@ -9,6 +9,8 @@ gem 'twitter-bootstrap-rails'
 gem 'will_paginate_mongoid'
 gem 'sunspot_mongo', :git => 'https://github.com/derekharmel/sunspot_mongo.git'
 gem 'sunspot_solr'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 group :development do
   gem 'rails-footnotes', '>= 3.7.5.rc4'
