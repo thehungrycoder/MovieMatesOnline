@@ -1,3 +1,19 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+jQuery ($) ->
+  cache = {}
+  $('#review_movie').autocomplete {
+    minLength: 3
+    source: (request, response) ->
+      term = request.term
+      if term in cache
+        return response(cache[term])
+      lastXhr = $.getJSON('/movies/suggestions.json', request, (data, status, xhr ) ->
+        cache[term] = data;
+        if xhr == lastXhr
+          response data
+      )
+    ,
+    select: (event, ui) ->
+      $('#review_movie_id').val(ui.item.id)
+  }
+
+

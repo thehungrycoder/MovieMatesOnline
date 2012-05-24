@@ -1,7 +1,7 @@
 - if @movie.present?
   - review_path = new_movie_review_path(@movie)
 - else
-  - review_path = new_review_path
+  - review_path = reviews_path
 
 = form_for(@review, :url => review_path) do |f|
   -if @review.errors.any?
@@ -11,7 +11,7 @@
         - @review.errors.full_messages.each do |msg|
           %li
             = msg
-  = f.hidden_field :movie_id
+  = f.hidden_field :movie_id, :id => 'review_movie_id'
   .field
     = f.label :movie
     - if @movie.present?

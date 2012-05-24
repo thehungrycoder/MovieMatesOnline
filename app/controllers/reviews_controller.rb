@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = current_user.reviews.paginate(:page => params[:page], :per_page => 2)
+    @reviews = current_user.reviews.paginate(:page => params[:page], :per_page => 5)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -37,8 +37,10 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @movie = Movie.find(params[:movie_id])
-    @movie.review = Review.new(params[:review].except('movie_id'))
+    @movie = Movie.find(params[:movie_id] || params[:review][:movie_id])
+    params[:review].delete(:movie_id)
+    params[:review].delete(:movie)
+    @movie.review = Review.new(params[:review])
     @movie.review.user_id = current_user.id
 
     respond_to do |format|
