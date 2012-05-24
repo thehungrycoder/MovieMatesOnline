@@ -1,0 +1,13 @@
+= render 'search'
+.span9
+  %h1 Latest Movies
+  = pagination_links(@movies)
+
+  #movies
+    - @movies.each do |movie|
+      = render 'movies/movie', :movie => movie
+    #moviedetail
+
+  .clearfix
+  = pagination_links(@movies)
+  /= link_to t('.new', :default => t("helpers.links.new")), new_movie_path, :class => 'btn btn-primary'
