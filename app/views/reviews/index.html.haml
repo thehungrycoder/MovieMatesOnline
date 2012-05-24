@@ -1,0 +1,26 @@
+%h1 My Reviews
+= will_paginate @reviews
+%table
+  %tr
+    %th Movie
+    %th Review
+    %th Impact
+    %th
+    %th
+    %th
+
+  - @reviews.each do |review|
+    %tr
+      %td
+        = link_to review.movie.name, movie_path(review.movie)
+      %td= review.review
+      %td= review.impact
+      %td= link_to 'Show', review
+      %td= link_to 'Edit', edit_review_path(review)
+      %td= link_to 'Destroy', review, :confirm => 'Are you sure?', :method => :delete
+
+= will_paginate @reviews
+
+%br
+
+= link_to 'New Review', new_review_path

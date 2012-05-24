@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Movie:
+  = @review.movie
+%p
+  %b Review:
+  = @review.review
+%p
+  %b Impact:
+  = @review.impact
+
+= link_to 'Edit', edit_review_path(@review)
+\|
+= link_to 'Back', reviews_path

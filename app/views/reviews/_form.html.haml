@@ -1,0 +1,32 @@
+- if @movie.present?
+  - review_path = new_movie_review_path(@movie)
+- else
+  - review_path = new_review_path
+
+= form_for(@review, :url => review_path) do |f|
+  -if @review.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@review.errors.count, "error")} prohibited this review from being saved:"
+      %ul
+        - @review.errors.full_messages.each do |msg|
+          %li
+            = msg
+  = f.hidden_field :movie_id
+  .field
+    = f.label :movie
+    - if @movie.present?
+      = link_to @movie.name, movie_path(@movie)
+    - else
+      = f.text_field :movie
+  .field
+    = f.label :review
+    = f.text_area :review, :rows => 5, :cols => 80
+  .field
+    = f.label :impact, 'Positive'
+    = f.radio_button :impact, 'positive'
+    = f.label :impact, 'Neutral'
+    = f.radio_button :impact, 'neutral'
+    = f.label :impact, 'Negative'
+    = f.radio_button :impact, 'negative'
+  .actions
+    = f.submit 'Save'
