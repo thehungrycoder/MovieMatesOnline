@@ -6,12 +6,10 @@ Moviemates::Application.routes.draw do
     resources :movies
   end
 
-  devise_for :users #, :path => "accounts" #, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
+  devise_for :users
 
   root :to => 'home#index'
   #resources :authentications
-
-  resources :users
 
   #match '/auth/:provider/callback' => 'authentications#create'
 
