@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
 
   end
   def latest
-    @movies = Movie.all
+    @movies = Movie.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

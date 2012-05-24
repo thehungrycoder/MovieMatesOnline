@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def index
-    @reviews = current_user.reviews.paginate(:page => params[:page], :per_page => 5)
+    @reviews = current_user.reviews.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
