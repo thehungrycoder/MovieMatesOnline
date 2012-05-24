@@ -26,7 +26,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [ :email ]
+  config.authentication_keys = [ :email ]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -172,7 +172,7 @@ Devise.setup do |config|
   # :authlogic_sha512 (then you should set stretches above to 20 for default behavior)
   # and :restful_authentication_sha1 (then you should set stretches to 10, and copy
   # REST_AUTH_SITE_KEY to pepper)
-  # config.encryptor = :sha512
+  config.encryptor = :sha512
 
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key
@@ -205,7 +205,7 @@ Devise.setup do |config|
   # config.navigational_formats = ["*/*", :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :get
+  config.sign_out_via = :delete
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
@@ -220,6 +220,6 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(:scope => :user).unshift :some_external_strategy
   # end
-  config.omniauth :facebook, '209835929027784', '5c2e832147b71d979bfc20f0fe46c27f'
-  config.omniauth :twitter, '98K9vZt7RegvRYesrpR4A', 'LHHjlEjEQkQBJcbDPQDU1S6hBNXivPQqAKDIf0e5VU0'
+  #config.omniauth :facebook, '209835929027784', '5c2e832147b71d979bfc20f0fe46c27f'
+  #config.omniauth :twitter, '98K9vZt7RegvRYesrpR4A', 'LHHjlEjEQkQBJcbDPQDU1S6hBNXivPQqAKDIf0e5VU0'
 end

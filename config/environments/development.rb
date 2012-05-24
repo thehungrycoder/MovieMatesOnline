@@ -36,7 +36,7 @@ Moviemates::Application.configure do
   config.assets.debug = true
   config.action_mailer.default_url_options = {:host => 'localhost:3000'}
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
   HOST = 'localhost:3000'
   ADMIN_EMAIL_FROM = ""
   PONY_VIA_OPTIONS = {
@@ -46,5 +46,5 @@ Moviemates::Application.configure do
       :user_name => '',
       :password => '',
       :authentication => :plain,
-      :domain => "localhost.localdomain"}
+      :domain => "localhost"}
 end

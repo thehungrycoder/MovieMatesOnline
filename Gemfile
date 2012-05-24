@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.0'
+gem 'rails', '3.2.3'
 
 gem 'mysql2'
 gem 'devise'
@@ -9,6 +9,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'twitter-bootstrap-rails'
+gem 'sunspot_rails'
 
 group :development do
   gem "nifty-generators"

@@ -1,0 +1,25 @@
+%label{:class => "label"}= t("activerecord.attributes.movies.name", :default => t("activerecord.labels.name", :default => "Name")) + ":"
+%p= @movie.name
+%label{:class => "label"}= t("activerecord.attributes.movies.tagline", :default => t("activerecord.labels.tagline", :default => "Tagline")) + ":"
+%p= @movie.tagline
+%label{:class => "label"}= t("activerecord.attributes.movies.overview", :default => t("activerecord.labels.overview", :default => "Overview")) + ":"
+%p= @movie.overview
+%label{:class => "label"}= t("activerecord.attributes.movies.duration", :default => t("activerecord.labels.duration", :default => "Duration")) + ":"
+%p= @movie.duration
+%label{:class => "label"}= t("activerecord.attributes.movies.is_public", :default => t("activerecord.labels.is_public", :default => "Is public")) + ":"
+%p= @movie.is_public
+%label{:class => "label"}= t("activerecord.attributes.movies.imdbid", :default => t("activerecord.labels.imdbid", :default => "Imdbid")) + ":"
+%p= @movie.imdbid
+%label{:class => "label"}= t("activerecord.attributes.movies.imdb_rating", :default => t("activerecord.labels.imdb_rating", :default => "Imdb rating")) + ":"
+%p= @movie.imdb_rating
+%label{:class => "label"}= t("activerecord.attributes.movies.certificate", :default => t("activerecord.labels.certificate", :default => "Certificate")) + ":"
+%p= @movie.certificate
+%label{:class => "label"}= t("activerecord.attributes.movies.tmdbid", :default => t("activerecord.labels.tmdbid", :default => "Tmdbid")) + ":"
+%p= @movie.tmdbid
+%label{:class => "label"}= t("activerecord.attributes.movies.released", :default => t("activerecord.labels.released", :default => "Released")) + ":"
+%p= @movie.released
+
+.form-actions
+  = link_to "Back", movie_path, :class => 'btn'
+  = link_to "Edit", edit_movie_path(@movie), :class => 'btn'
+  = link_to "Delete", movie_path(@movie), :method => "delete", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn btn-danger'

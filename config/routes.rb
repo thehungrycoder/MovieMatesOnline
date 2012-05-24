@@ -1,8 +1,12 @@
 Moviemates::Application.routes.draw do
 
-  get "home/index"
 
-  devise_for :users, :path => "accounts", :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
+  scope :movies do
+    match '/movies/latest', :to => 'movies#latest', :as => 'latest_movies'
+    resources :movies
+  end
+
+  devise_for :users #, :path => "accounts" #, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "registrations" }
 
   root :to => 'home#index'
   #resources :authentications
