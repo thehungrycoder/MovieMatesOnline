@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120326171856) do
+ActiveRecord::Schema.define(:version => 20120524084333) do
 
   create_table "authorizations", :force => true do |t|
     t.string   "provider"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20120326171856) do
 
   create_table "movies", :force => true do |t|
     t.string   "name"
-    t.string   "tagline"
     t.text     "overview"
     t.integer  "duration"
     t.boolean  "is_public"
@@ -38,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20120326171856) do
     t.date     "released"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "runtime"
+    t.string   "cover_image"
   end
 
   create_table "users", :force => true do |t|
