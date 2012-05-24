@@ -10,6 +10,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'twitter-bootstrap-rails'
 gem 'sunspot_rails'
+gem 'will_paginate'
 
 group :development do
   gem "nifty-generators"
