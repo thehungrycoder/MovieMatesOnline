@@ -1,0 +1,7 @@
+= form_for(@user, :url => :manage_my_profile) do |f|
+  = f.label :name
+  = f.text_field :name
+  %br
+  = f.submit 'Update Profile'
+
+

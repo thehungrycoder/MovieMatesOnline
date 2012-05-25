@@ -10,8 +10,10 @@ Moviemates::Application.routes.draw do
     post '/movie/:movie_id/new_review', :to => 'reviews#create', :as => 'new_movie_review'
   end
 
+  get '/profile/manage', :to => 'profile#show', :as => 'show_my_profile'
+  put '/profile/manage', :to => 'profile#manage', :as => 'manage_my_profile'
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
 
   root :to => 'home#index'
 
