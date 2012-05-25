@@ -16,4 +16,7 @@ jQuery ($) ->
       $('#review_movie_id').val(ui.item.id)
   }
 
-
+  $('.impact').live 'mouseover', ->
+    $(this).find('.actions').fadeIn('slow')
+  $('.impact').live 'mouseout', ->
+    $(this).find('.actions').delay(3000).fadeOut('slow')
