@@ -25,6 +25,7 @@
         %p.navbar-text.pull-right
           - if user_signed_in?
             Logged in as
+            = get_user_avatar(current_user)
             = link_to (current_user.name.present?) ? current_user.name : current_user.email, :show_my_profile
             = link_to t(:logout), destroy_user_session_path, :method => :delete
           - else

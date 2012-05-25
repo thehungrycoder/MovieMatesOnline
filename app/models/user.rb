@@ -5,9 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmed_at, :name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmed_at, :name, :avatar_url, :location
 
   has_many :reviews
+  has_many :authorizations, :dependent => :destroy
+
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
     if user = self.find_by_email(data.email)
@@ -16,7 +18,10 @@ class User < ActiveRecord::Base
       self.create(
         :email => data.email,
         :password => Devise.friendly_token[0, 20],
-        :confirmed_at => Time.now
+        :confirmed_at => Time.now,
+        :name => data.name,
+        :avatar_url => access_token.info.image,
+        :location => data.location[:name],
       )
     end
   end
