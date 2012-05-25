@@ -5,15 +5,20 @@
 
     .poster
       = link_to(image_tag(get_movie_poster_path(movie.cover_image), {:width => 80, :height => 100}), movie_path(movie.id))
-    .info
+    .info{style: "clear: right"}
       - if movie.released.present?
         %strong Released
         = movie.released
         %br
       - if movie.certificate.present?
         %strong Certificate
-        = movie.certificate
-        %br
+        %span.badge.badge-info
+          = movie.certificate
+        &nbsp;&nbsp;
+      %strong
+        Rating
+      %span.badge.badge-inverse{title: "#{movie.imdb_rating.to_s} out of 10"}
+        = movie.imdb_rating.to_s
     .overview
       - if movie.overview.present?
         = truncate(movie.overview, {length: 200})
