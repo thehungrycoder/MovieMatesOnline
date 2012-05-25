@@ -1,24 +1,22 @@
 %h1 Movies
 = pagination_links(@movies)
 %table{:class => "table table-striped"}
-  %thead
+  %tr
+    %th ID
+    %th Name
+    %th Created at
+    %th Actions
+  - @movies.each do |movie|
     %tr
-      %th ID
-      %th
-        = t("activerecord.attributes.movies.name", :default => t("activerecord.labels.name", :default => "Name"))
-      %th Created at
-      %th Actions
-  %tbody
-    - @movies.each do |movie|
-      %tr
-        %td= movie.id
-        %td= link_to movie.name, movie_path(movie)
-        %td= movie.created_at
-        %td
-          = link_to 'Write Review', new_movie_review_path(movie), :class => 'btn btn-mini'
-          = link_to "Show", movie_path(movie), :class => 'btn btn-mini'
-          = link_to "Edit", edit_movie_path(movie), :class => 'btn btn-mini'
-          = link_to "Destroy", movie_path(movie), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn btn-mini btn-danger' 
+      %td= movie.id
+      %td.movie_info
+        = render 'movies/movie', :movie => movie
+      %td= movie.created_at
+      %td
+        = link_to 'Write Review', new_movie_review_path(movie), :class => 'btn btn-mini'
+        = link_to "Show", movie_path(movie), :class => 'btn btn-mini'
+        = link_to "Edit", edit_movie_path(movie), :class => 'btn btn-mini'
+        = link_to "Destroy", movie_path(movie), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn btn-mini btn-danger'
 
 = pagination_links(@movies)
 
