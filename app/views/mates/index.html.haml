@@ -1,0 +1,18 @@
+%h1 My Mates
+
+.row-fluid
+  .span12
+    - for friendship in @friendships
+      - mate = friendship.friend
+      .mate
+        .thumb
+          = link_to image_tag(get_user_avatar_url(mate), :height => '140px', :width => '140px'), user_path(mate)
+        .info
+          = mate.name
+          %br
+          Location:
+          = mate.location || 'Unknown'
+          %br
+          = friendship.updated_at.strftime("Since: %e %b, %Y")
+    .clearfix
+    = pagination_links(@friendships)

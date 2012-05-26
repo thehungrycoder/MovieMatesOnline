@@ -1,5 +1,12 @@
 Moviemates::Application.routes.draw do
 
+  get "mates/index"
+  get "mates/pending"
+  get "mates/invite"
+  put "mates/reject/:mate_id", :to => 'mates#modify', :status => 'reject', :as => 'friendship_reject'
+  put "mates/accept/:mate_id", :to => 'mates#modify', :status => 'accept', :as => 'friendship_accept'
+
+  resources :users
   resources :reviews
   get 'movies/suggestions', :to => 'ajax#movie_suggestions'
 
