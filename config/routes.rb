@@ -3,8 +3,8 @@ Moviemates::Application.routes.draw do
   get "mates/index"
   get "mates/pending"
   get "mates/invite"
-  put "mates/reject/:mate_id", :to => 'mates#modify', :status => 'reject', :as => 'friendship_reject'
-  put "mates/accept/:mate_id", :to => 'mates#modify', :status => 'accept', :as => 'friendship_accept'
+  put "mates/:mate_id/accept" => 'mates#accept', :as => 'friendship_accept'
+  put "mates/:mate_id/block" => 'mates#block', :as => 'friendship_block'
 
   resources :users
   resources :reviews

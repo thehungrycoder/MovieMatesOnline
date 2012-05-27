@@ -1,11 +1,15 @@
 class Friendship < ActiveRecord::Base
-  # attr_accessible :title, :body
-  belongs_to :user
-  belongs_to :friend, :class_name => 'User'
+  include Amistad::FriendshipModel
 
-  validates :user_id, :presence => true
-  validates :friend_id, :presence => true
+  searchable do
+    integer :id
+    integer :user_id
+    integer :friend_id
+    boolean :pending
 
-  scope :accepted, where({:status => :accepted})
-  scope :pending, where({:status => :pending})
+
+
+
+
+  end
 end

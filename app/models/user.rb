@@ -10,11 +10,7 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :authorizations, :dependent => :destroy
 
-  has_many :friendships
-  has_many :friend, :through => :friendships
-
-  has_many :inverse_friendships, :class_name => 'Friendship', :foreign_key => 'friend_id'
-  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+  include Amistad::FriendModel
 
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
