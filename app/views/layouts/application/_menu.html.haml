@@ -21,7 +21,14 @@
             %ul.dropdown-menu
               %li= link_to 'Write Review', new_review_path
               %li= link_to 'My Reviews', reviews_path
-          %li= link_to "Link 3", "/path3"
+          %li.dropdown
+            %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+              Mates
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to 'My Mates', :mates_index
+              %li= link_to 'Pending Requests', :mates_pending
+
         %p.navbar-text.pull-right
           - if user_signed_in?
             Logged in as

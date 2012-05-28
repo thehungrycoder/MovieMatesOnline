@@ -8,12 +8,22 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :confirmed_at
 end
-User.find_or_create_by_email!({
+User.find_or_create_by_email({
+  :name => 'Raju',
   :email => 'rajuru@gmail.com',
   :password => 'common',
   :confirmed_at => Time.now,
 })
 
+
+(1..20).each do |index|
+  User.find_or_create_by_email({
+    :name => "Raju RU #{index}",
+    :email => "rajuru#{index}@gmail.com",
+    :password => 'common',
+    :confirmed_at => Time.now,
+  })
+end
 
 require_relative 'seedable/movie'
 

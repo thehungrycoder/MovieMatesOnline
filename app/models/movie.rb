@@ -2,6 +2,7 @@ class Movie < ActiveRecord::Base
   has_one :review
 
   searchable do
+    integer :id
     text :name
     integer :released
     string :imdbid

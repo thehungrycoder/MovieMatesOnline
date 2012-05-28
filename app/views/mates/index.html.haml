@@ -1,0 +1,21 @@
+%h1 My Mates
+%br
+.row-fluid
+  .span12
+    - if @mates.present?
+      - for mate in @mates
+        .mate
+          .thumb
+            = link_to image_tag(get_user_avatar_url(mate), :height => '140px', :width => '140px'), user_path(mate)
+          .info
+            = mate.name
+            %br
+            Location:
+            = mate.location || 'Unknown'
+            %br
+            = mate.updated_at.strftime("Since: %e %b, %Y")
+      .clearfix
+      /= pagination_links(@mates)
+    - else
+      .alert.alert-error
+        Oh no! You're so lonely. Start adding friends now!

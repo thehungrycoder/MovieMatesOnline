@@ -11,20 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120525141954) do
+ActiveRecord::Schema.define(:version => 20120527103549) do
 
-  create_table "authorizations", :force => true do |t|
-    t.string   "provider"
-    t.string   "uid"
+  create_table "friendships", :force => true do |t|
     t.integer  "user_id"
-    t.string   "token"
-    t.string   "secret"
-    t.string   "name"
-    t.string   "link"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.datetime "token_expiry"
+    t.integer  "friend_id"
+    t.integer  "blocker_id"
+    t.boolean  "pending",    :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "friendships", ["user_id", "friend_id"], :name => "index_friendships_on_user_id_and_friend_id", :unique => true
 
   create_table "movies", :force => true do |t|
     t.string   "name"
@@ -74,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20120525141954) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.string   "avatar_url"
-    t.string   "country"
+    t.string   "location"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

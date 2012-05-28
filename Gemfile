@@ -11,10 +11,11 @@ gem 'sunspot_rails'
 gem 'will_paginate'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
-
+gem 'amistad'
 group :development do
   gem "nifty-generators"
   #gem 'unicorn'
+  gem 'rails-footnotes'
 end
 
 group :assets do

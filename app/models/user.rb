@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :authorizations, :dependent => :destroy
 
+  include Amistad::FriendModel
+
+
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
     if user = self.find_by_email(data.email)
