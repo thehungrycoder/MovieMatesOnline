@@ -12,7 +12,6 @@ gem 'will_paginate'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'amistad'
-gem 'jquery-datatables-rails'
 group :development do
   gem "nifty-generators"
   #gem 'unicorn'

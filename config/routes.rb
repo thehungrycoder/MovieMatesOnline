@@ -10,7 +10,7 @@ Moviemates::Application.routes.draw do
   get 'movies/suggestions', :to => 'ajax#movie_suggestions'
 
   scope :movies do
-    match '/movies/latest', :to => 'movies#latest', :as => 'latest_movies'
+    match '/movies/latest/(:page)', :to => 'movies#latest', :as => 'latest_movies'
     resources :movies
     get '/movie/:movie_id/new_review', :to => 'reviews#new', :as => 'new_movie_review'
     post '/movie/:movie_id/new_review', :to => 'reviews#create', :as => 'new_movie_review'
