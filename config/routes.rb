@@ -18,13 +18,14 @@ Moviemates::Application.routes.draw do
     post '/movie/:movie_id/new_review', :to => 'reviews#create', :as => 'new_movie_review'
   end
 
-  get '/profile/manage', :to => 'profile#show', :as => 'show_my_profile'
-  get '/profile/manage', :to => 'profile#manage', :as => 'manage_my_profile'
-  put '/profile/update', :to => 'profile#update', :as => 'update_my_profile'
+  scope '/profile' do
+    get 'manage', :to => 'profile#manage', :as => 'manage_my_profile'
+    put 'manage', :to => 'profile#update', :as => 'manage_my_profile'
+    get 'show/:id', :to => 'profile#show', :as => 'show_profile'
+  end
 
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
 
   root :to => 'home#index'
-  get '/profile/:id', :to => 'profile#show', :as => 'user_profile'
 
 end

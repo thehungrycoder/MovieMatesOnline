@@ -19,20 +19,7 @@
               Location:
               = user.location || 'Unknown'
               %br
-            .actions
-              - if user.friend_with? current_user
-                you are mates!
-              - elsif user.blocked? current_user
-
-              - elsif user.invited? current_user
-                = link_to 'Approve Mate', friendship_accept_path(user), :class => 'btn btn-primary btn-mini', :method => :put
-                = link_to 'Block', friendship_block_path(user), :class => 'btn btn-danger btn-mini', :method => :put
-              - elsif current_user.invited? user
-                Mate request already sent...
-              - elsif !user.connected_with? current_user
-                = link_to 'Add Mate', friendship_request_path(user.id), :class => 'btn btn-primary btn-mini'
-                = link_to 'Block', friendship_block_path(user), :class => 'btn btn-danger btn-mini', :method => :put
-
+            = render 'mates/actions', :user => mate
               /- elsif user.
           /= pagination_links(@mates)
         .clearfix

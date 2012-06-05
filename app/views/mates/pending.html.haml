@@ -1,45 +1,48 @@
-%h1 Pending Acceptance
+%section
+  .page-header
+    %h1 Pending Acceptance
 
-.row-fluid
-  .span12
-    - if @outgoing.present?
-      - for mate in @outgoing
-        .mate
-          .thumb
-            = link_to image_tag(get_user_avatar_url(mate), :height => '140px', :width => '140px'), user_profile_path(mate)
-          .info
-            = mate.name
-            %br
-            Location:
-            = mate.location || 'Unknown'
-            %br
-            = mate.updated_at.strftime("Sent: %e %b, %Y")
-      .clearfix
-      = pagination_links(@outgoing)
-    - else
-      .alert.alert-error
-        No pending mate requests!
+  .row-fluid
+    .span12
+      - if @outgoing.present?
+        - for mate in @outgoing
+          .mate
+            .thumb
+              = link_to image_tag(get_user_avatar_url(mate), :height => '140px', :width => '140px'), show_profile_path(mate)
+            .info
+              = mate.name
+              %br
+              Location:
+              = mate.location || 'Unknown'
+              %br
+              = mate.updated_at.strftime("Sent: %e %b, %Y")
+        .clearfix
+        = pagination_links(@outgoing)
+      - else
+        .alert.alert-error
+          No pending mate requests!
 
-%h1 Incoming Requests
+  .page-header
+    %h1 Incoming Requests
 
-.row-fluid
-  .span12
-    - if @incoming.present?
-      - for mate in @incoming
-        .mate
-          .thumb
-            = link_to image_tag(get_user_avatar_url(mate), :height => '140px', :width => '140px'), user_profile_path(mate)
-          .info
-            = mate.name
-            %br
-            Location:
-            = mate.location || 'Unknown'
-            %br
-            = mate.updated_at.strftime("Received: %e %b, %Y")
-            = link_to 'Accept', friendship_accept_path(mate), :method => :put, :class => 'btn btn-primary'
-            = link_to 'Block', friendship_block_path(mate), :method => :put, :class => 'btn btn-danger'
-      .clearfix
-      = pagination_links(@incoming)
-    - else
-      .alert.alert-error
-        No incoming mate request!
+    .row-fluid
+      .span12
+        - if @incoming.present?
+          - for mate in @incoming
+            .mate
+              .thumb
+                = link_to image_tag(get_user_avatar_url(mate), :height => '140px', :width => '140px'), show_profile_path(mate)
+              .info
+                = mate.name
+                %br
+                Location:
+                = mate.location || 'Unknown'
+                %br
+                = mate.updated_at.strftime("Received: %e %b, %Y")
+                = link_to 'Accept', friendship_accept_path(mate), :method => :put, :class => 'btn btn-primary'
+                = link_to 'Block', friendship_block_path(mate), :method => :put, :class => 'btn btn-danger'
+          .clearfix
+          = pagination_links(@incoming)
+        - else
+          .alert.alert-error
+            No incoming mate request!
