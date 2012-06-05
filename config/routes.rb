@@ -2,9 +2,11 @@ Moviemates::Application.routes.draw do
 
   get "mates/index"
   get "mates/pending"
-  get "mates/invite"
+  get "mates/invite/:id", :to => 'mates#invite', :as => 'friendship_request'
   put "mates/:mate_id/accept" => 'mates#accept', :as => 'friendship_accept'
   put "mates/:mate_id/block" => 'mates#block', :as => 'friendship_block'
+  put "mates/:mate_id/remove" => 'mates#remove', :as => 'friendship_remove'
+  get "mates/search" => 'mates#search', :as => 'mates_search'
 
   resources :reviews
   get 'movies/suggestions', :to => 'ajax#movie_suggestions'
@@ -17,11 +19,12 @@ Moviemates::Application.routes.draw do
   end
 
   get '/profile/manage', :to => 'profile#show', :as => 'show_my_profile'
-  put '/profile/manage', :to => 'profile#manage', :as => 'manage_my_profile'
+  get '/profile/manage', :to => 'profile#manage', :as => 'manage_my_profile'
+  put '/profile/update', :to => 'profile#update', :as => 'update_my_profile'
 
   devise_for :users, :controllers => {:omniauth_callbacks => "omniauth_callbacks"}
 
   root :to => 'home#index'
-
+  get '/profile/:id', :to => 'profile#show', :as => 'user_profile'
 
 end

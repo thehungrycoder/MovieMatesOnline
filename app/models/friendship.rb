@@ -6,10 +6,5 @@ class Friendship < ActiveRecord::Base
     integer :user_id
     integer :friend_id
     boolean :pending
-
-
-
-
-
   end
 end

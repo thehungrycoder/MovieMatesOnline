@@ -6,7 +6,7 @@
       - for mate in @outgoing
         .mate
           .thumb
-            = link_to image_tag(get_user_avatar_url(mate), :height => '140px', :width => '140px'), user_path(mate)
+            = link_to image_tag(get_user_avatar_url(mate), :height => '140px', :width => '140px'), user_profile_path(mate)
           .info
             = mate.name
             %br
@@ -28,7 +28,7 @@
       - for mate in @incoming
         .mate
           .thumb
-            = link_to image_tag(get_user_avatar_url(mate), :height => '140px', :width => '140px'), user_path(mate)
+            = link_to image_tag(get_user_avatar_url(mate), :height => '140px', :width => '140px'), user_profile_path(mate)
           .info
             = mate.name
             %br

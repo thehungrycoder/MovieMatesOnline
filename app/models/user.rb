@@ -14,6 +14,11 @@ class User < ActiveRecord::Base
 
   include Amistad::FriendModel
 
+  searchable do
+    text :name
+    string :email
+  end
+
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
     if user = self.find_by_email(data.email)

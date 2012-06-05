@@ -17,6 +17,13 @@ module ApplicationHelper
     'film.png'
   end
 
+  def get_return_url
+    if request.referer.present?
+      request.referer
+    else
+      root_path
+    end
+  end
 
 
 end

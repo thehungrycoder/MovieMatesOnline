@@ -1,4 +1,7 @@
 %h1 My Mates
+%a.dialog{:href => mates_search_path}
+  Find Mates
+
 %br
 .row-fluid
   .span12
@@ -6,14 +9,19 @@
       - for mate in @mates
         .mate
           .thumb
-            = link_to image_tag(get_user_avatar_url(mate), :height => '140px', :width => '140px'), user_path(mate)
+            = link_to image_tag(get_user_avatar_url(mate), :height => '140px', :width => '140px'), user_profile_path(mate)
           .info
             = mate.name
             %br
             Location:
             = mate.location || 'Unknown'
-            %br
+            %br/
             = mate.updated_at.strftime("Since: %e %b, %Y")
+          .actions
+            - if mate.friend_with? current_user
+              = link_to 'Remove Mate', friendship_remove_path(mate), :class => 'btn btn-danger btn-mini', :method => :put
+              = link_to 'Block mate', friendship_block_path(mate), :class => 'btn btn-danger btn-mini', :method => :put
+
       .clearfix
       /= pagination_links(@mates)
     - else
