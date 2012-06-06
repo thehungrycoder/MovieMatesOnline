@@ -4,6 +4,7 @@ gem 'rails', '3.2.3'
 
 gem 'mysql2'
 gem 'devise'
+gem 'devise-encryptable'
 gem 'haml-rails'
 gem 'omniauth-facebook'
 gem 'twitter-bootstrap-rails'

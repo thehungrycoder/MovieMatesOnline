@@ -9,3 +9,7 @@ global: &global
 development:
   <<: *global
   database: moviemates_ror_dev
+
+test:
+  <<: *global
+  database: moviemates_ror_test

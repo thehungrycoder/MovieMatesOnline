@@ -12,8 +12,10 @@ module UsersHelper
     end
   end
 
-  def get_user_avatar(user)
+  def get_user_avatar(user, options = {})
     return unless user.present?
-    image_tag(get_user_avatar_url(user), :height => '30', :width => '30')
+    options[:height] ||= '20px'
+    options[:width] ||= '20px'
+    image_tag(get_user_avatar_url(user), :height => options[:height], :width => options[:width])
   end
 end

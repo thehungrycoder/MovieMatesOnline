@@ -1,12 +1,15 @@
 Moviemates::Application.routes.draw do
 
-  get "mates/index"
-  get "mates/pending"
-  get "mates/invite/:id", :to => 'mates#invite', :as => 'friendship_request'
-  put "mates/:mate_id/accept" => 'mates#accept', :as => 'friendship_accept'
-  put "mates/:mate_id/block" => 'mates#block', :as => 'friendship_block'
-  put "mates/:mate_id/remove" => 'mates#remove', :as => 'friendship_remove'
-  get "mates/search" => 'mates#search', :as => 'mates_search'
+  scope '/mates' do
+    get "index", :to => 'mates#index'
+    get "pending", :to => 'mates#pending'
+    get "invite/:id", :to => 'mates#invite', :as => 'friendship_request'
+    put ":mate_id/accept" => 'mates#accept', :as => 'friendship_accept'
+    put ":mate_id/block" => 'mates#block', :as => 'friendship_block'
+    put ":mate_id/remove" => 'mates#remove', :as => 'friendship_remove'
+    get "search" => 'mates#search', :as => 'mates_search'
+  end
+
 
   resources :reviews
   get 'movies/suggestions', :to => 'ajax#movie_suggestions'
