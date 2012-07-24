@@ -1,15 +1,11 @@
 - if movie.present?
-  .movie
-    %h3
-      = link_to movie.name, movie_path(movie.id)
-
+  .movie.offset1
     .poster
       = link_to(image_tag(get_movie_poster_path(movie.cover_image), {:width => 80, :height => 100}), movie_path(movie.id))
-    .info{style: "clear: right"}
-      - if movie.released.present?
-        %strong Released
-        = movie.released
-        %br
+    .info
+      %h3
+        = link_to "#{movie.name} (#{movie.released})" , movie_path(movie.id)
+
       - if movie.certificate.present?
         %strong Certificate
         %span.badge.badge-info
@@ -21,6 +17,9 @@
         = movie.imdb_rating.to_s
     .overview
       - if movie.overview.present?
-        = truncate(movie.overview, {length: 200})
-    /= link_to t('.edit', :default => t("helpers.links.edit")), edit_movie_path(movie), :class => 'btn btn-mini'
-    /= link_to t('.destroy', :default => t("helpers.links.destroy")), movie_path(movie), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger'
+        = truncate(movie.overview, {length: 300})
+    .clearfix
+    .starrings
+      %strong
+        Starrings:
+      Tom Cruise, Tom Hanks, Kate Winslet

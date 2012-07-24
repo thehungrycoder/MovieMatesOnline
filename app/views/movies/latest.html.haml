@@ -1,23 +1,14 @@
-%h1 Movies
-= pagination_links(@movies)
-%table{:class => "table table-striped"}
-  %tr
-    %th ID
-    %th Name
-    %th Created at
-    %th Actions
-  - @movies.each do |movie|
-    %tr
-      %td= movie.id
-      %td.movie_info
-        = render 'movies/movie', :movie => movie
-      %td= movie.created_at
-      %td
-        = link_to 'Write Review', new_movie_review_path(movie), :class => 'btn btn-mini'
-        = link_to "Show", movie_path(movie), :class => 'btn btn-mini'
-        = link_to "Edit", edit_movie_path(movie), :class => 'btn btn-mini'
-        = link_to "Destroy", movie_path(movie), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}", :class => 'btn btn-mini btn-danger'
+%section
+  .page-header
+    %h1 Movies
+  .row-fluid
+    .span8
+      = pagination_links(@movies)
 
-= pagination_links(@movies)
-
-= link_to "New", new_movie_path, :class => 'btn btn-primary'
+      - @movies.each do |movie|
+        = render 'movie', :movie => movie
+        %br
+      = pagination_links(@movies)
+    .span4
+      = render 'search'
+    .clearfix

@@ -1,3 +1,6 @@
+.page-header
+  %h1
+    Filter
 .span3
   = form_for(:moviesearch, :url => latest_movies_path, :method => 'get', :html_options => { :class => 'well'}) do |f|
     = f.label :name
