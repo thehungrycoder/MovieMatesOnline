@@ -6,7 +6,7 @@ Moviemates::Application.routes.draw do
   put "mates/:mate_id/accept" => 'mates#accept', :as => 'friendship_accept'
   put "mates/:mate_id/block" => 'mates#block', :as => 'friendship_block'
 
-  resources :users
+  #resources :users
   resources :reviews
   get 'movies/suggestions', :to => 'ajax#movie_suggestions'
 

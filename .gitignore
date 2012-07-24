@@ -16,3 +16,4 @@
 /.idea
 /.log
 /public/system/movie_cover_images
+/config/database.yml
