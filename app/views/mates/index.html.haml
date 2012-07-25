@@ -3,7 +3,7 @@
     My Mates
 
 .row-fluid
-  %a.dialog.btn{:href => mates_search_path}
+  %a.dialog.btn{:href => search_mates_path}
     Find Mates
 
 .row-fluid
@@ -22,8 +22,8 @@
             = mate.updated_at.strftime("Since: %e %b, %Y")
           .actions
             - if mate.friend_with? current_user
-              = link_to 'Remove Mate', friendship_remove_path(mate), :class => 'btn btn-danger btn-mini', :method => :put
-              = link_to 'Block mate', friendship_block_path(mate), :class => 'btn btn-danger btn-mini', :method => :put
+              = link_to 'Remove Mate', remove_mate_path(mate), :class => 'btn btn-danger btn-mini', :method => :put
+              = link_to 'Block mate', block_mate_path(mate), :class => 'btn btn-danger btn-mini', :method => :put
 
       .clearfix
       /= pagination_links(@mates)

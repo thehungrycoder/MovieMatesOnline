@@ -12,21 +12,29 @@
           %li
             = msg
   = f.hidden_field :movie_id, :id => 'review_movie_id'
-  .field
-    = f.label :movie
-    - if @movie.present?
-      = link_to @movie.name, movie_path(@movie)
-    - else
-      = f.text_field :movie
-  .field
-    = f.label :review
-    = f.text_area :review, :rows => 5, :cols => 80
-  .field
-    = f.label :impact, 'Positive'
-    = f.radio_button :impact, 'positive'
-    = f.label :impact, 'Neutral'
-    = f.radio_button :impact, 'neutral'
-    = f.label :impact, 'Negative'
-    = f.radio_button :impact, 'negative'
+  .control-group
+    .control-label
+      = f.label :movie
+    .controls
+      - if @movie.present?
+        = link_to @movie.name, movie_path(@movie)
+      - else
+        = f.text_field :movie
+  .control-group
+    .controls-label
+      = f.label :review
+    .controls
+      = f.text_area :review, :rows => 5, :cols => 80
+  .control-group
+    .controls
+      %label.checkbox
+        = f.radio_button :impact, 'positive'
+        Positive
+      %label.checkbox
+        = f.radio_button :impact, 'neutral'
+        Neutral
+      %label.checkbox
+        = f.radio_button :impact, 'negative'
+        Negative
   .actions
     = f.submit 'Submit Review', :class => 'btn btn-primary'
