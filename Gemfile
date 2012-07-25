@@ -13,6 +13,8 @@ gem 'will_paginate'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'amistad'
+gem 'flexi_model', :path => '../flexi-model'
+
 group :development do
   gem "nifty-generators"
   #gem 'unicorn'

@@ -1,5 +1,10 @@
 class Movie < ActiveRecord::Base
+  #include FlexiModel
+
   has_one :review
+
+  #_string :name
+
 
   searchable do
     integer :id

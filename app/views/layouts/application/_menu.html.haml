@@ -26,8 +26,8 @@
               Mates
               %b.caret
             %ul.dropdown-menu
-              %li= link_to 'My Mates', :mates_index
-              %li= link_to 'Pending Requests', :mates_pending
+              %li= link_to 'My Mates', :mates
+              %li= link_to 'Pending Requests', :pending_mates
 
         - if user_signed_in?
           %ul.nav.pull-right
