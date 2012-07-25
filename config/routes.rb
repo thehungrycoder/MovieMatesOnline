@@ -2,9 +2,11 @@ Moviemates::Application.routes.draw do
 
   resources :mates do
     collection { get "pending" }
-    collection { get "invite" }
+    collection { get "blocked" }
+    member { get "invite" }
     member { put "accept" }
     member { put "block" }
+    member { put "unblock" }
     member { put "remove" }
     collection { get "search" }
   end
@@ -23,7 +25,7 @@ Moviemates::Application.routes.draw do
     member { post 'new_review', :to => 'reviews#create' }
   end
 
-  resources :profile do
+  resources :profiles do
     member { get 'manage' }
     member { put 'manage', :action => :update }
   end

@@ -1,10 +1,6 @@
 .page-header
   %h1
-    My Mates
-
-.row-fluid
-  %a.dialog.btn{:href => mates_search_path}
-    Find Mates
+    Blocked Mate Requests
 
 .row-fluid
   .span12
@@ -21,9 +17,7 @@
             %br/
             = mate.updated_at.strftime("Since: %e %b, %Y")
           .actions
-            - if mate.friend_with? current_user
-              = link_to 'Remove Mate', friendship_remove_path(mate), :class => 'btn btn-danger btn-mini', :method => :put
-              = link_to 'Block mate', friendship_block_path(mate), :class => 'btn btn-danger btn-mini', :method => :put
+            = link_to 'Unblock', unblock_mate_path(mate), :class => 'btn btn-primary btn-mini', :method => :put
 
       .clearfix
       /= pagination_links(@mates)

@@ -10,5 +10,5 @@
     - elsif current_user.invited? user
       Mate request already sent...
     - elsif !user.connected_with? current_user
-      = link_to 'Add Mate', friendship_request_path(user.id), :class => 'btn btn-primary btn-mini'
-      = link_to 'Block', friendship_block_path(user), :class => 'btn btn-danger btn-mini', :method => :put
+      = link_to 'Add Mate', invite_mate_path(user.id), :class => 'btn btn-primary btn-mini'
+      = link_to 'Block', block_mate_path(user), :class => 'btn btn-danger btn-mini', :method => :put

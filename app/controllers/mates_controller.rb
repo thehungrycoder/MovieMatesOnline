@@ -7,6 +7,10 @@ class MatesController < ApplicationController
     @mates = current_user.friends
   end
 
+  def blocked
+    @mates = current_user.blocked
+  end
+
   def pending
     @outgoing = current_user.pending_invited.paginate(:page => params[:page])
     @incoming = current_user.pending_invited_by.paginate(:page => params[:page])
@@ -45,7 +49,7 @@ class MatesController < ApplicationController
   end
 
   def accept
-    new_mate = User.find(params[:mate_id])
+    new_mate = User.find(params[:id])
     if new_mate.present?
       if current_user.invited_by?(new_mate)
         current_user.approve new_mate
@@ -61,7 +65,7 @@ class MatesController < ApplicationController
   end
 
   def remove
-    mate = User.find_by_id(params[:mate_id])
+    mate = User.find_by_id(params[:id])
 
     if mate.present?
       if current_user.connected_with? mate
@@ -78,17 +82,31 @@ class MatesController < ApplicationController
   end
 
   def block
-    new_mate = User.find(params[:mate_id])
+    new_mate = User.find(params[:id])
     if new_mate.present?
       if current_user.block(new_mate)
-        redirect_to :mates_pending, :notice => sprintf("%s has been blocked!", new_mate.name)
+        redirect_to :pending_mates, :notice => sprintf("%s has been blocked!", new_mate.name)
         return
       else
-        redirect_to :mates_pending, :alert => sprintf("%s could not be blocked!", new_mate.name)
+        redirect_to :pending_mates, :alert => sprintf("%s could not be blocked!", new_mate.name)
         return
       end
     end
-    redirect_to :mates_pending, :alert => "Mate could not be rejected!"
+    redirect_to :pending_mates, :alert => "Mate could not be blocked!"
+  end
+
+  def unblock
+    new_mate = User.find(params[:id])
+    if new_mate.present?
+      if current_user.unblock(new_mate)
+        redirect_to :pending_mates, :notice => sprintf("%s has been unblocked!", new_mate.name)
+        return
+      else
+        redirect_to :pending_mates, :alert => sprintf("%s could not be unblocked!", new_mate.name)
+        return
+      end
+    end
+    redirect_to :pending_mates, :alert => "Mate could not be unblocked!"
   end
 
   def search
